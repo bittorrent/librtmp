@@ -1,0 +1,13 @@
+prefix=/Users/m/dev/onair-white-label/app/deps/third-party/librtmp/build/host
+exec_prefix=${prefix}
+libdir=/Users/m/dev/onair-white-label/app/deps/third-party/librtmp/build/host/lib
+incdir=${prefix}/include
+
+Name: librtmp
+Description: RTMP implementation
+Version: v2.4
+Requires: 
+URL: http://rtmpdump.mplayerhq.hu
+Libs: -L${libdir} -lrtmp -lz 
+Libs.private: 
+Cflags: -I${incdir}
