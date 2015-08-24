@@ -4259,6 +4259,10 @@ RTMPSockBuf_Fill(RTMPSockBuf *sb)
   while (1)
     {
       nBytes = sizeof(sb->sb_buf) - 1 - sb->sb_size - (sb->sb_start - sb->sb_buf);
+      if (sb->sb_interrupt_callback && sb->sb_interrupt_callback(sb->sb_context))
+        {
+          return -1;
+        }
 #if defined(CRYPTO) && !defined(NO_SSL)
       if (sb->sb_ssl)
 	{
