@@ -1379,8 +1379,12 @@ RTMP_ClientPacket(RTMP *r, RTMPPacket *packet)
 }
 
 #ifdef _DEBUG
-extern FILE *netstackdump;
-extern FILE *netstackdump_read;
+DECL FILE *netstackdump;
+DECL FILE *netstackdump_read;
+void RTMP_SetNetStackDumpFiles(FILE* wFile, FILE* rFile)
+{
+    netstackdump = wFile; netstackdump_read = rFile;
+}
 #endif
 
 static int
