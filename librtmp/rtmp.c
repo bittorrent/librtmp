@@ -1471,7 +1471,9 @@ ReadN(RTMP *r, char *buffer, int n)
 	}
       /*RTMP_Log(RTMP_LOGDEBUG, "%s: %d bytes\n", __FUNCTION__, nBytes); */
 #ifdef _DEBUG
-      fwrite(ptr, 1, nBytes, netstackdump_read);
+  if (netstackdump != NULL) {
+    fwrite(ptr, 1, nBytes, netstackdump_read);
+  }
 #endif
 
       if (nBytes == 0)
@@ -4307,7 +4309,9 @@ RTMPSockBuf_Send(RTMPSockBuf *sb, const char *buf, int len)
   int rc;
 
 #ifdef _DEBUG
-  fwrite(buf, 1, len, netstackdump);
+  if (netstackdump != NULL) {
+    fwrite(buf, 1, len, netstackdump);
+  }
 #endif
 
 #if defined(CRYPTO) && !defined(NO_SSL)
